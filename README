@@ -1,0 +1,166 @@
+								-- Projet 2 : Rendu 2 --
+
+
+
+TRAVAIL EFFECTUE
+
+Nous avons implémenté toute la partie 2, concernant l'apprentissage de clauses, i.e : l'exploration des conflits, l'apprentissage de clauses, et les deux bonus, et ce à la fois pour les versions avec et sans littéraux surveillés.
+
+
+
+COMPILATION / EXECUTION
+
+* Pour compiler : make --> Deux exécutables : resol pour DPLL sans littéraux surveillés, et resol-wl pour DPLL avec littéraux surveillés.
+  make exemples crée un dossier Test dans lequel seront les fichiers de tests mentionnés dans ce README.
+
+* resol et resol-wl prennent comme seul argument le fichier .cnf à lire.
+
+
+
+OPTIONS
+
+* Pas d'option : L'apprentissage de clauses est désactivé.
+
+* -cl : Active l'apprentissage de clauses.
+
+* -cl-interac : Active l'apprentissage de clauses, ainsi que le mode interactif.
+  Si on décide d'exporter un graphe au format .dot, l'algorithme le placera dans graph.dot.
+
+* -explainunsat : Crée deux fichiers si la CNF en entrée est insatisfiable : unsat.cnf et unsat.tex.
+  Le premier contient un sous-ensemble de clauses de la CNF en entrée suffisant à dériver une contradiction, et le deuxième une telle dérivation en LaTeX (le module bussproofs est requis, inclus dans l'archive).
+  Active nécessairement l'apprentissage de clauses.
+  
+* -print : Active l'affichage des étapes de l'algorithme.
+
+
+
+EXEMPLE D'EXECUTION
+
+	Dans le dossier Tests/Rendu 1, on trouve le fichier ex1.cnf. On montre ici la version sans littéraux surveillés.
+	Lancer l'algorithme avec l'option -cl-interac.
+	Au premier conflit, entrer g. La clause apprise est -1 -2 -3 0, on vérifie sa justesse sur le graphe qui présente 3 comme UIP. On note que l'algorithme va backtracker jusqu'au niveau de décision 1 (inclus).
+	Passer (c) les deux conflits suivants. Le graphe n'a pas changé.
+	Construire le graphe du 4e conflit. On remarque que l'UIP choisi est bien le premier que l'on pouvait choisir (-13, et pas 5).
+	Désactiver le mode interactif (t). Cette CNF est satisfiable.
+
+	On remarquera que les littéraux apparaissant dans le graphe sont ceux mis à faux à un niveau de décision inférieur à celui actuel.
+
+
+
+FICHIERS
+
+* Le dossier Basic contient tous les fichiers concernant l'algorithme sans littéraux surveillés. Le dossier Watched_literals contient quant à lui tous les fichiers concernant l'algorithme avec littéraux surveillés.
+
+* Le fichier sort.ml contient l'implémentation de List.sort_uniq, fonction apparue dans OCaml 4.02, et qui n'est pas présente sur les ordinateurs des salles informatique.
+
+* Le fichier dynArray.ml implémente les tableaux dynamiques.
+
+* Le fichier Dot.ml implémente les opérations sur le graphe et son exportation au format .dot.
+
+* Le fichier cnf.ml s'occupe de toutes les opérations directement reliées aux clauses et aux cnf hors traitement par l'algorithme, ainsi que de l'affichage de la solution.
+
+* Le fichier parameters.ml implémente un type parameters, permettant de regrouper dans une seule variable six paramètres des algorithmes, ceci afin que le nombre d'arguments de chaque fonction ne soit pas trop grand.
+
+* Le fichier dpll.ml s'occupe de l'initialisation de l'algorithme, et de sa boucle principale.
+
+* Le fichier step.ml contient les implémentations de toutes les fonctions utilisées dans la boucle principale de dpll.ml.
+
+* Le fichier learning.ml implémente la construction du graphe des conflits, l'apprentissage de clauses et le mode interactif.
+
+* Le fichier stack.ml s'occupe de la gestion de la pile et de la mise à jour de l'ensemble de travail sur les clauses.
+
+* Le fichier print_step.ml implémente l'affichage.
+
+* Le fichier unsat.ml implémente toutes les opérations concernant le deuxième bonus.
+
+* Dans le cas des littéraux surveillés, watched.ml implémente toutes les fonctions concernant la manipulation / vérification des clauses avec littéraux surveillés.
+
+
+
+CHOIX D'IMPLEMENTATION (hors clause learning)
+
+* Les clauses sont représentées par des listes d'entiers représentant les littéraux ; les listes permettent de vérifier si une clause est de longueur 1 ou 0 facilement, ce qui est pratique pour la détection de clauses unitaire, et de la clause vide. L'ensemble de travail est un tableau dynamique de clauses.
+
+* Version de base (sans littéraux surveillés) :
+	On associe à chaque clause un booléen indiquant si elle est satisfaite par l'instanciation actuelle, ce qui permet de ne pas la parcourir inutilement.
+	Lorsqu'un littéral est mis à faux, on le supprime de toutes les clause où il apparaît. Nous avons pensé que parcourir toutes les clauses pour le faire serait laborieux et long ; nous avons donc retenu les indices des clauses dans lesquelles apparaissent chacun des littéraux, pour minimiser les opérations d'un pari et des backtracks. Ainsi, on retient dans la pile certaines modifications faites par l'algorithme lorsqu'il affecte une valeur à une variable.
+	Cette méthode permet donc de ne pas parcourir chaque clause pour chaque étape de l'algorithme, et augmente donc son efficacité sur des longues instances.
+
+* Version avec littéraux surveillés :
+	La représentation des clauses par des listes permet d'implémenter facilement les littéraux surveillés, qui seront les deux premiers littéraux de chaque liste. En assurant que tous les littéraux évalués à faux sont au fond de la liste représentant la clause, cela permet de changer un littéral surveillé facilement si celui-ci est mis à faux : il suffit de choisir le littéral suivant.
+	On n'a alors plus un si grand besoin de retenir les positions de chaque littéral, ce qui allège l'algorithme.
+
+* Nous avons très peu modifié nos heuristiques/méthodes du premier rendu, car nos structures de données s'adaptaient bien au clause learning. La principale modification tient dans l'initialisation : nous avons fait en sorte de ne plus avoir besoin de fonction spécifique pour les premières déductions et le premier pari, qui se font maintenant comme tous les autres, avec les fonctions de step.ml.
+
+
+
+IMPLEMENTATION DU CLAUSE LEARNING
+
+* L'ajout de clause en lui-même n'a pas été problématique. Il a suffit de transformer les tableaux de clauses en tableaux dynamiques pour pouvoir rajouter des clauses en cours d'exécution.
+  Si la suppression de clauses devra être implémentée, il nous sera facile de désactiver lesdites clauses avec un tableau auxiliaire tout en conservant le temps constant amorti de l'insertion des tableaux dynamiques.
+  Le plus délicat a été d'ajouter les clauses comme si elles avaient subi toutes les opérations possibles lors des affectations précédentes, en conservant les propriétés voulues sur toutes les variables. Il a donc fallu remonter la pile pour traiter ces clauses. Cela n'est pas très coûteux, car en temps proportionnel en le nombre de variables.
+
+* Retenir comment la valeur de chaque littéral a été déduite était assez naturel.
+  Dans la version sans littéraux surveillés, on a associé à chaque clause la liste des littéraux mis à faux dans cette clause, placés dans l'ordre temporel inversé. Ainsi, on obtient pour chaque clause la liste des littéraux qui ont conduit à une déduction / une contradiction dans cette clause.
+  Dans la version avec littéraux surveillés, ce traitement était déjà fait (et nécessaire) : les littéraux mis à faux de la clause sont regroupés dans le bon ordre, en queue de clause. Nous n'avons donc rien eu à ajouter.
+  Il restait à retenir les niveaux de décision et les clauses associées à chaque déduction. Pour les premiers, nous avons simplement créé un tableau associent les niveaux à chaque variable, et pour les deuxièmes, une simple astuce numérique sur le tableau d'instanciation solution a permis de retenir, pour chaque déduction et pour chaque conflit, quelle clause est la source de cet événement.
+
+
+
+BONUS
+
+* Bonus 1 :
+	Pour pouvoir toujours choisir le premier UIP, il faut choisir pour variable sur lequel faire une résolution celle qui a été affectée le plus récemment.
+	Pour ce faire, nous avons utilisé un tableau retenant l'ordre d'instanciation à l'intérieur de chaque niveau de décision, ce qui n'a pas posé de problème majeur.
+
+* Bonus 2 :
+	Si la CNF n'est pas satisfiable, alors le dernier conflit se trouve au niveau de décision le plus bas., i.e. il s'obtient sans faire de pari, uniquement à l'aide de déductions.
+	Pour touver le sous-ensemble suffisant à dériver une contradiction, on cherche donc toutes les clauses qui ont conduit au dernier conflit - soit qu'elles ont entraîné une propagation ayant conduit au conflit, soit qu'elles ont permis de former, avec une résolution, une clause ayant entraîné une telle propagation.
+	La preuve de l'insatisfiabilité se fait en construisant les arbres de dérivation de chacune des clauses ayant entraîné une des propagations qui a conduit au conflit, puis, en partant de la dernière clause apprise, en faisant une série de résolutions parmi ces clauses (à l'aveugle) jusqu'à obtenir la clause vide.
+	Nous retenions déjà l'origine des propagations, il nous restait donc à retenir l'origine de chacune des clauses apprises, ce qui se fait avec un tableau annexe, contenant pour chaque clause les indices des différentes clauses qui ont permis de la former avec une série de résolutions.
+
+
+
+PRETRAITEMENT
+
+	Les prétraitements effectués sont la détection des tautologies et des clauses unitaires. De plus, dans la version de base, on enregistre comme indiqué plus haut les indices des clauses dans lesquelles apparaissent chacun des littéraux.
+	Enfin, dans les deux verions, on trie les littéraux dans les clauses par indice de variable croissant dans le tableau clauses, ce qui facilite les opérations de résolution dans le clause learning (fusion en temps linéaire en la taille des clauses).
+	Nous avons dû supprimer, par rapport au rendu 1, la détection des littéraux sous une seule polarité, car elle venait perturber le clause learning. Il est toujours possible de la rajouter (au moment de faire un pari, on regarde si la variable est présente sous une seule polarité, et si oui, on fait le pari correspondant), mais cela aurait demandé plus de travail, et aurait donné un algorithme moins clair.
+
+
+
+REPARTITION DES TACHES
+
+	Nous avons réfléchi ensemble sur les structures de données et la démarche à adopter. Puis, chacun a codé, selon les besoins de l'autre, les parties que l'on s'était assignées. La répartition du travail a été la suivante :
+	* Jean-Yves Franceschi : Adaptation des structures de données au clause learning, algorithme trouvant la clause à ajouter, mode interactif, debug, bonus 1, arbres de preuve du bonus 2, mise en forme du rendu.
+	* Clément Sartori : Gestion du git, tableaux dynamiques, construction du graphe, ajout de la clause et backtrack intelligent, tests de la validité et des performances de l'algorithme, première partie du bonus 2 (sous-ensemble de clauses insatisfiable), relecture finale.
+
+
+
+PROBLEMES RENCONTRES
+
+	Nous n'avons pas rencontré de problème majeur, surtout de nombreux petits bugs qui nous ont demandé beaucoup de temps.
+	Il a fallu de plus gérer le cas particulier où la clause apprise fait remonter l'algorithme au début de la pile d'instanciation. Dans ce cas, il faut remonter jusqu'au début de la pile, mais alors notre algorithme en déduisait, à cause des conditions d'arrêt, que la CNF était insatisfiable. Nous avons donc créé une fonction de backtrack spécifique pour ce cas.
+
+
+
+PERFORMANCES
+
+* On constate, de manière générale, que les performances du solveur sont améliorées avec le clause learning.
+  Ainsi, sur les fichiers ex1 à ex5, ainsi que sur basic>wl et basic.wl2 (dossier Tests/Rendu 1), l'algorithme termine dans les deux versions en quelques millièmes eavec le clause learning.
+  En particulier, les fichiers basic>wl et basic>wl2 étaient bien plus lents dans la version du rendu 1, surtout avec les littéraux surveillés. A présent, on ne constate plus de différence sur ces fichiers.
+  Ces observations sont confirmées par le nombre d'étapes effectuées par l'algorithme, qui est diminué sensiblement (de 400000 à une centaine pour basic>wl, de 6000000 à 200 pour basic>wl2, et one note des diminutions moins marquées sur les exemples cités) : le backtrack intelligent permet de passer outre beaucoup d'étapes superflues.
+
+* Cependant, sur des fichiers comme long_12 ou long_13 (dossier Tests/Rendu 1), qui sont long et comportent beaucoup de clauses, et où l'instaisfiabilité tient à une clause (puisque ces fichiers forment toutes les clauses de longueur resp. 12 et 13), le nombre d'étages de backtrack intelligent ne dépasse pas 2, et le nombre de conflits est assez important.
+  Dans ces cas, le clause learning pénalise l'algorithme, car effectue un grand nombre de calculs peu utiles (par exemple, les clauses apprises sont toujours longues dans ces cas).
+  On remarque que la différence entre les littéraux surveillés et l'algorithme basique est toujours présente sur ce genre de fichiers : la version littréaux est bien plus rapide que la version de base sur ces longs fichiers, avec de grandes clauses.
+
+* Dans le dossier Tests/Fichiers+, on trouve 12 fichiers (trouvés sur Internet, c'est assez hardu de trouver aléatoirement des fichiers assez courts mais robustes) : 6 sont satisfiables, 6 ne le sont pas.
+  Parmi les satisfiables, l'algorithme avec clause learning termine en un temps moyen de l'ordre de une seconde, tandis que l'algorithme sans clause learning termine en un temps de 2 à 20 fois plus long.
+  Parmi les insatisfiable, l'ordre est inversé : c'est l'algorithme avec clause learning qui est beaucoup plus lent que celui sans.
+  Les clauses étant de difficulté similaire, on peut donc vérifier que le clause learning peutt ralentir l'algorithme si la clause est insatisfiable ; c'est compréhensible, car le nombre de conflits rencontrés peut être grand, et car, dans le cas satisfiable, les clauses apprises permettent de trouver une solution plus rapidement, tandis que dans le cas non satisfiable, elle ne font que reporter l'algorithme sur d'autres branches non satisfiables. Ainsi, dans ce dernier cas, l'algorithme est ralenti par les calculs exigés par le clause learning lors des nombreux conflits.
+
+* A l'aide de l'outil de profilage gprof (un grand merci à Rémy Grünblatt), on peut observer la part de temps d'exécution prise par chaque fonction.
+  On observe ainsi que le clause learning ne prend pas un temps prépondérant par rapport aux autres fonctions quelle que soit la version (wl ou non), ce qui est satisfaisant. On observe cependant que les fonctions en rapport avec les littéraux surveillés occupent près de la moitié du temps d'exécution. Cela peut paraître normal puisque c'est le coeur de cette heuristique, mais cela peut aussi expliquer en partie le retard des littéraux surveillés sur certaines clauses.
+  Nous n'avons pas eu le temps de nous pencher plus en avant sur ce problème, mais nous pourrions y travailler pour des rendus ultérieurs.
+
