@@ -1,0 +1,40 @@
+### Starting build.
+# Target: main.ml.depends, tags: { extension:ml, file:main.ml, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep -modules main.ml > main.ml.depends # cached
+# Target: form.ml.depends, tags: { extension:ml, file:form.ml, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep -modules form.ml > form.ml.depends # cached
+# Target: form.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:form.cmo, file:form.ml, implem, ocaml, quiet }
+/usr/bin/ocamlc -c -o form.cmo form.ml # cached
+# Target: new_lexer.mll, tags: { extension:mll, file:new_lexer.mll, lexer, ocaml, ocamllex, quiet }
+/usr/bin/ocamllex -q new_lexer.mll # cached
+# Target: new_lexer.ml.depends, tags: { extension:ml, file:new_lexer.ml, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep -modules new_lexer.ml > new_lexer.ml.depends # cached
+# Target: new_parser.mly, tags: { extension:mly, file:new_parser.mly, ocaml, ocamlyacc, parser, quiet }
+/usr/bin/ocamlyacc -v new_parser.mly # cached
+# Target: new_parser.mli.depends, tags: { extension:mli, file:new_parser.mli, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep -modules new_parser.mli > new_parser.mli.depends # cached
+# Target: new_parser.cmi, tags: { byte, compile, extension:mli, file:new_parser.mli, interf, ocaml, quiet }
+/usr/bin/ocamlc -c -o new_parser.cmi new_parser.mli # cached
+# Target: new_lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:new_lexer.cmo, file:new_lexer.ml, implem, ocaml, quiet }
+/usr/bin/ocamlc -c -o new_lexer.cmo new_lexer.ml # cached
+# Target: tseitin.ml.depends, tags: { extension:ml, file:tseitin.ml, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep -modules tseitin.ml > tseitin.ml.depends
+# Target: tseitin.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:tseitin.cmo, file:tseitin.ml, implem, ocaml, quiet }
+/usr/bin/ocamlc -c -o tseitin.cmo tseitin.ml
+# Target: main.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:main.cmo, file:main.ml, implem, ocaml, quiet }
+/usr/bin/ocamlc -c -o main.cmo main.ml
+# Target: form.cmx, tags: { compile, extension:cmx, extension:ml, file:form.cmx, file:form.ml, implem, native, ocaml, quiet }
+/usr/bin/ocamlopt -c -o form.cmx form.ml # cached
+# Target: new_parser.ml.depends, tags: { extension:ml, file:new_parser.ml, ocaml, ocamldep, quiet }
+/usr/bin/ocamldep -modules new_parser.ml > new_parser.ml.depends # cached
+# Target: new_parser.cmx, tags: { compile, extension:cmx, extension:ml, file:new_parser.cmx, file:new_parser.ml, implem, native, ocaml, quiet }
+/usr/bin/ocamlopt -c -o new_parser.cmx new_parser.ml # cached
+# Target: new_lexer.cmx, tags: { compile, extension:cmx, extension:ml, file:new_lexer.cmx, file:new_lexer.ml, implem, native, ocaml, quiet }
+/usr/bin/ocamlopt -c -o new_lexer.cmx new_lexer.ml # cached
+# Target: tseitin.cmx, tags: { compile, extension:cmx, extension:ml, file:tseitin.cmx, file:tseitin.ml, implem, native, ocaml, quiet }
+/usr/bin/ocamlopt -c -o tseitin.cmx tseitin.ml
+# Target: main.cmx, tags: { compile, extension:cmx, extension:ml, file:main.cmx, file:main.ml, implem, native, ocaml, quiet }
+/usr/bin/ocamlopt -c -o main.cmx main.ml
+# Target: main.native, tags: { dont_link_with, extension:native, file:main.native, link, native, ocaml, program, quiet }
+/usr/bin/ocamlopt unix.cmxa form.cmx new_parser.cmx new_lexer.cmx tseitin.cmx main.cmx -o main.native
+# Compilation successful.
