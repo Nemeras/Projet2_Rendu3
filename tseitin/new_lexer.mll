@@ -14,5 +14,4 @@ rule token = parse
           | "/\\"                                       { AND }
           | "=>"                                        { IMPLY }
 	  | int as s					{ LIT (int_of_string s) }			(* Littéral *)
-
 	  | eof						{ EOF }						(* Fin de fichier *)

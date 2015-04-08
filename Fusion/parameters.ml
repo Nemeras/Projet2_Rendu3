@@ -46,3 +46,17 @@ type parameters = {
 	unsat : bool ;
 	print : bool
 }
+
+
+
+
+
+module type Solver =
+sig
+	type atom
+	type struc
+	val init : atom array -> struc
+	val update : struc -> Cnf.literal -> bool
+	val backtrack : struc -> Cnf.literal -> unit
+	val unsat : struc -> Cnf.clause	
+end
