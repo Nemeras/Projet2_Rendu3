@@ -1,0 +1,10 @@
+ niveau courant : unsat à cause de x=y
+
+
+et on avait racine(x) != racine (y)
+
+
+alors on a une chaine d'égalites e1.... en
+tq e1 /\ e2 /\ e3 /\ .... /\ en /\ (x=y) => unsat
+
+-e1  -e2 -e3 /\ .
