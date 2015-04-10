@@ -24,6 +24,7 @@ type struc = {mutable aa: atom array; mutable eg:uf; mutable ineg:inegs; mutable
 	       
 let union x y arr lit=
   match (arr.(racine x arr)),(arr.(racine y arr)) with
+  |(a,_),(b,_) when a=b -> Addeg(lit,a,b,a,b);
   |(a,sza),(b,szb) when sza > szb -> arr.(b) <- (a,szb);arr.(a) <- (a,sza+szb);Addeg(lit,x,y,b,a)
   |(a,sza),(b,szb) -> arr.(a) <- (b,sza); arr.(b) <- (b,sza+szb);Addeg(lit,x,y,a,b);;
 
@@ -103,12 +104,13 @@ let chemin tableau debut fin=
 	  end
       end
   done;
-  !precedent;;
+  List.tl (List.tl (List.rev (!actuel::(!precedent))));;
     
 let backtrack struc lit =
   let dernier_changement = List.hd struc.st in
   struc.st <- List.tl (struc.st);
   match dernier_changement with
+  |Addeg(lit,x,y,rx,ry) when rx=ry -> ();
   |Addeg(lit,x,y,rx,ry) -> let (a,sz)=struc.eg.(rx) in struc.eg.(rx) <- (rx,sz);
 						       let (b,szb)=struc.eg.(ry) in 
 						       struc.eg.(ry)<- (ry,szb-sz);
