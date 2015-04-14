@@ -1,0 +1,157 @@
+			(** ALGORITHME DPLL **)
+
+(* La structure principale de l'algorithme DPLL ; la pile est gérée dans stack.ml, les étapes intermédiaires dans step.ml *)
+
+
+open List
+
+open Parameters
+open DynArray
+open Cnf
+open Init
+open Step
+open Propa
+open Print_step
+
+
+
+module Solve (E : Clauses) (T : Theory) =
+struct
+
+
+module M = Init_clauses (E)
+module S = Step (E) (T)
+module Bcp = Propagation (E) (T)
+module P = Print (E)
+
+
+let init cnf wl learning draw unsat print =
+	
+	
+	(* Tri des littéraux dans les clauses par indice de variable croissant,
+	   élimination des tautologies.                                         *)
+	Cnf.ordo cnf ;
+	
+	(* Initialisation de current, solution et de la pile des instanciations.
+           Elimination des clauses avec moins de un littéral.                    *)
+	let solution = Array.make (cnf.v_real+1) 0 in
+	let levels = Array.make (cnf.v_real+1) 0 in
+	let orders = Array.make (cnf.v_real+1) 0 in
+	
+	let clauses, current, pos = M.cnf_to_vect cnf solution in
+	let l = current.length in		(* Nombre de clauses dans la CNF initiale *)
+	let stack = E.init_stack () in		(* stack contient initialement 0 en fond de pile *)
+	
+	let origins =
+		if unsat then
+			DynArray.make clauses.length []
+		else
+			DynArray.make 0 []
+	in
+	
+	(* Paramètres des algorithmes de Step *)
+	let para = {
+		back = false ;
+		nb_back = 0 ;
+		level = -1 ;
+		wl = wl ;
+		learning = learning ;
+		draw = draw ;
+		unsat = unsat ;
+		print = print
+	}
+	in
+	
+	let k = ref (
+		if solution.(0) < 0 then	(* Si la clause vide est dans la CNF *)
+			0
+		else
+			1
+	) in
+	
+	let compt = ref 0 in
+	
+	stack, clauses, current, pos, origins, solution, levels, orders, k, para, l, compt
+
+
+
+
+let loop cnf stack solver clauses current pos origins solution levels orders k para compt =
+	
+	while abs !k <= cnf.v_real && !k <> 0 do
+		incr compt ;
+		
+		(* Si on est revenu au début des paris car on a appris une clause unitaire, on réinitialise
+		   les valeurs et on reprend l'exécution.                                                   *)
+		if solution.(0) = 1 then
+			begin
+			solution.(0) <- 0 ;
+			para.back <- false ;
+			para.level <- -1 ;
+			k := 0
+			end
+		;
+		
+		(* Affichage, si autorisé *)
+		if para.print then
+			P.print_step current solution para.back !compt ;
+		
+		(* Détection des clauses unitaires *)
+		if solution.(0) = 0 then
+			Bcp.propa stack solver current pos solution levels orders para ;
+		
+		(* Si toutes les variables ont été instanciées *)
+		if abs !k = cnf.v_real then
+			(* S'il y a contradiction : backtrack *)
+			if solution.(0) < 0 then
+				S.continue stack solver clauses current pos origins solution levels orders k para
+			(* Sinon : c'est fini *)
+			else
+				k := cnf.v_real + 1
+		(* Sinon : on continue *)
+		else
+			S.continue stack solver clauses current pos origins solution levels orders k para
+	done
+
+
+
+
+let result k l clauses origins solution para =
+	if !k = 0 then
+		begin
+		(* Preuve de l'insatisfiabilité *)
+		if para.unsat then
+			Unsat.create_unsat origins clauses solution l ;
+		False
+		end
+	else
+		True solution
+
+
+
+		(** RESOLUTION - STRUCTURE DE DPLL **)
+
+
+
+(* Renvoie une solution associée à la CNF cnf donnée en entrée :
+	False si cnf n'est pas satisfiable.
+	True solution si cnf est satisfiable, avec solution une instanciation qui la satisfait. *)
+
+let solve cnf solver wl learning draw unsat print =
+	
+	let
+		stack,
+		clauses, current, pos, origins,
+		solution, levels, orders,
+		k, para, l, compt
+	= init cnf wl learning draw unsat print in
+	
+	loop cnf stack solver clauses current pos origins solution levels orders k para compt ;
+	
+	result k l clauses origins solution para
+
+
+
+
+
+end
