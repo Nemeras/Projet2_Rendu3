@@ -46,6 +46,9 @@ let _ =
 	
 	Arg.parse options (fun s -> file := s)	"Ce programme résout l'instance de SAT donnée dans le fichier en entrée." ;
 	
+	if !theory = 2 && !unsat then
+		failwith "L'égalité et l'explication de l'insatisfiabilité sont incompatibles dans DPLL(T)" ;
+	
 	let module T = (val (choose_theory !theory) : Theory) in
 	let module Launch = Theory (T) in
 	Launch.init !file !wl !learning !draw !unsat !print

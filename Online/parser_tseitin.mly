@@ -1,6 +1,4 @@
-
-
-%token <int> LIT	
+%token <int> LIT
 
 
 %token LPAREN
@@ -19,9 +17,9 @@
 %nonassoc NOT
 
 %start formula
-%type <Tseitin.form> form		/* On construit la form */
-%type <Tseitin.formlist> formula	/* On construit la form */
-			
+%type <int Tseitin.form> form		/* On construit la form */
+%type <int Tseitin.formlist> formula
+
 
 %%
 formula:

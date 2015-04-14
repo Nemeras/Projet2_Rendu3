@@ -66,5 +66,5 @@ let choose_theory theory =
 	match theory with
 	| 0 -> (module Base : Theory)
 	| 1 -> (module Empty : Theory)
-	(*| 2 -> (module Equality : Theory)*)
+	| 2 -> (module Equality : Theory)
 	| _ -> failwith "Erreur dans le choix de la théorie"

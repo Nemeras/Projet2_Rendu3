@@ -1,6 +1,17 @@
 open Printf
 
-type formula =
+type 'a formula =
+	| Lit of 'a*int
+	| And of ('a formula) * ('a formula) * int
+	| Or of ('a formula)*('a formula)*int
+	| Not of ('a formula)*int
+
+type 'a form = 'a formula*int
+
+type 'a formlist = ('a formula list) * int
+
+
+(*type formula =
 	| Lit of int*int
 	| And of formula*formula*int
 	| Or of formula*formula*int
@@ -8,8 +19,7 @@ type formula =
 
 type form = formula*int
 
-type formlist = (formula list) * int
-
+type formlist = (formula list) * int*)
 
 let numeroter formula debut =	
 	let numerotage = ref debut in

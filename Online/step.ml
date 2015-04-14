@@ -75,9 +75,17 @@ let continue stack solver clauses current pos origins solution levels orders k p
 		P.print_new_backtrack para.print ;
 		para.back <- true ;
 		
-		(* Apprentissage de clause *)
-		let module L = Learning_p (E) (T) in
-		L.learning stack solver clauses current pos solution levels orders k para origins
+		if solution.(0) = -max_int then
+			begin
+			let new_clause = T.unsat solver in
+			let clause_mod = E.maj_cl stack new_clause pos levels current.length in
+			DynArray.add clauses new_clause [] ;
+			DynArray.add current clause_mod (E.init_value [])
+			end
+		else
+			(* Apprentissage de clause *)
+			let module L = Learning_p (E) (T) in
+			L.learning stack solver clauses current pos solution levels orders k para origins
 		
 		end
 	

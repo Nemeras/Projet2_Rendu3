@@ -176,7 +176,7 @@ let learning stack solver clauses current pos solution levels orders k para orig
 		P.print_learning new_clause para.print ;
 		
 		(* Apprentissage de new_clause *)
-		let clause_mod = E.maj_cl stack new_clause pos levels (current.length) in
+		let clause_mod = E.maj_cl stack new_clause pos levels current.length in
 		DynArray.add clauses new_clause [] ;
 		DynArray.add current clause_mod (E.init_value []) ;
 		
