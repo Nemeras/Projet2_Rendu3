@@ -20,11 +20,7 @@ let create file aff_cnf =
 		let f, m = parse file in
 		let s = Tseitin.conv_tseitin f m in
 		if aff_cnf then
-			begin
-			print_string "CNF produite :\n" ;
 			print_string s ;
-			print_newline ()
-			end ;
 		let cnf = parse_cnf s in
 		cnf, m
 	with _ -> (failwith "Erreur de saisie")

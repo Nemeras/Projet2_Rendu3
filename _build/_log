@@ -1,0 +1,336 @@
+### Starting build.
+# Target: Online/main.ml.depends, tags: { extension:ml, file:Online/main.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/main.ml > Online/main.ml.depends
+# Target: Online/cnf.ml.depends, tags: { extension:ml, file:Online/cnf.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/cnf.ml > Online/cnf.ml.depends
+# Target: Online/sort.ml.depends, tags: { extension:ml, file:Online/sort.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/sort.ml > Online/sort.ml.depends
+# Target: Online/sort.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/sort.cmo, file:Online/sort.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/sort.cmo Online/sort.ml
+# Target: Online/dpll.ml.depends, tags: { extension:ml, file:Online/dpll.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/dpll.ml > Online/dpll.ml.depends
+# Target: Online/cnf.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/cnf.cmo, file:Online/cnf.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/cnf.cmo Online/cnf.ml
+# Target: Online/dynArray.ml.depends, tags: { extension:ml, file:Online/dynArray.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/dynArray.ml > Online/dynArray.ml.depends
+# Target: Online/init.ml.depends, tags: { extension:ml, file:Online/init.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/init.ml > Online/init.ml.depends
+# Target: Online/dynArray.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/dynArray.cmo, file:Online/dynArray.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/dynArray.cmo Online/dynArray.ml
+# Target: Online/parameters.ml.depends, tags: { extension:ml, file:Online/parameters.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/parameters.ml > Online/parameters.ml.depends
+# Target: Online/base.ml.depends, tags: { extension:ml, file:Online/base.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/base.ml > Online/base.ml.depends
+# Target: Online/lexer_cnf.mll, tags: { extension:mll, file:Online/lexer_cnf.mll, lexer, ocaml, ocamllex, quiet }
+/usr/local/bin/ocamllex.opt -q Online/lexer_cnf.mll
+# Target: Online/lexer_cnf.ml.depends, tags: { extension:ml, file:Online/lexer_cnf.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/lexer_cnf.ml > Online/lexer_cnf.ml.depends
+# Target: Online/parser_cnf.mly, tags: { extension:mly, file:Online/parser_cnf.mly, ocaml, ocamlyacc, parser, quiet }
+/usr/local/bin/ocamlyacc Online/parser_cnf.mly
+# Target: Online/parser_cnf.mli.depends, tags: { extension:mli, file:Online/parser_cnf.mli, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/parser_cnf.mli > Online/parser_cnf.mli.depends
+# Target: Online/parser_cnf.cmi, tags: { byte, compile, extension:mli, file:Online/parser_cnf.mli, interf, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/parser_cnf.cmi Online/parser_cnf.mli
+# Target: Online/lexer_cnf.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/lexer_cnf.cmo, file:Online/lexer_cnf.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/lexer_cnf.cmo Online/lexer_cnf.ml
+# Target: Online/clauses_basic.ml.depends, tags: { extension:ml, file:Online/clauses_basic.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/clauses_basic.ml > Online/clauses_basic.ml.depends
+# Target: Online/dot.ml.depends, tags: { extension:ml, file:Online/dot.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/dot.ml > Online/dot.ml.depends
+# Target: Online/dot.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/dot.cmo, file:Online/dot.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/dot.cmo Online/dot.ml
+# Target: Online/clauses_wl.ml.depends, tags: { extension:ml, file:Online/clauses_wl.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/clauses_wl.ml > Online/clauses_wl.ml.depends
+# Target: Online/watched.ml.depends, tags: { extension:ml, file:Online/watched.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/watched.ml > Online/watched.ml.depends
+# Target: Online/watched.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/watched.cmo, file:Online/watched.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/watched.cmo Online/watched.ml
+# Target: Online/empty.ml.depends, tags: { extension:ml, file:Online/empty.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/empty.ml > Online/empty.ml.depends
+# Target: Online/lexer_tseitin.mll, tags: { extension:mll, file:Online/lexer_tseitin.mll, lexer, ocaml, ocamllex, quiet }
+/usr/local/bin/ocamllex.opt -q Online/lexer_tseitin.mll
+# Target: Online/lexer_tseitin.ml.depends, tags: { extension:ml, file:Online/lexer_tseitin.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/lexer_tseitin.ml > Online/lexer_tseitin.ml.depends
+# Target: Online/parser_tseitin.mly, tags: { extension:mly, file:Online/parser_tseitin.mly, ocaml, ocamlyacc, parser, quiet }
+/usr/local/bin/ocamlyacc Online/parser_tseitin.mly
+# Target: Online/parser_tseitin.mli.depends, tags: { extension:mli, file:Online/parser_tseitin.mli, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/parser_tseitin.mli > Online/parser_tseitin.mli.depends
+# Target: Online/tseitin.ml.depends, tags: { extension:ml, file:Online/tseitin.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/tseitin.ml > Online/tseitin.ml.depends
+# Target: Online/tseitin.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/tseitin.cmo, file:Online/tseitin.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/tseitin.cmo Online/tseitin.ml
+# Target: Online/parser_tseitin.cmi, tags: { byte, compile, extension:mli, file:Online/parser_tseitin.mli, interf, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/parser_tseitin.cmi Online/parser_tseitin.mli
+# Target: Online/lexer_tseitin.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/lexer_tseitin.cmo, file:Online/lexer_tseitin.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/lexer_tseitin.cmo Online/lexer_tseitin.ml
+# Target: Online/equality.ml.depends, tags: { extension:ml, file:Online/equality.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/equality.ml > Online/equality.ml.depends
+# Target: Online/lexer_equ.mll, tags: { extension:mll, file:Online/lexer_equ.mll, lexer, ocaml, ocamllex, quiet }
+/usr/local/bin/ocamllex.opt -q Online/lexer_equ.mll
+# Target: Online/lexer_equ.ml.depends, tags: { extension:ml, file:Online/lexer_equ.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/lexer_equ.ml > Online/lexer_equ.ml.depends
+# Target: Online/parser_equ.mly, tags: { extension:mly, file:Online/parser_equ.mly, ocaml, ocamlyacc, parser, quiet }
+/usr/local/bin/ocamlyacc Online/parser_equ.mly
+# Target: Online/parser_equ.mli.depends, tags: { extension:mli, file:Online/parser_equ.mli, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/parser_equ.mli > Online/parser_equ.mli.depends
+# Target: Online/parser_equ.cmi, tags: { byte, compile, extension:mli, file:Online/parser_equ.mli, interf, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/parser_equ.cmi Online/parser_equ.mli
+# Target: Online/lexer_equ.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/lexer_equ.cmo, file:Online/lexer_equ.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/lexer_equ.cmo Online/lexer_equ.ml
+# Target: Online/base.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/base.cmo, file:Online/base.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/base.cmo Online/base.ml
++ /usr/local/bin/ocamlc.opt -c -I Online -o Online/base.cmo Online/base.ml
+File "Online/base.ml", line 30, characters 9-15:
+Warning 40: v_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 30, characters 23-24:
+Warning 40: v was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 31, characters 115-121:
+Warning 40: v_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 31, characters 126-127:
+Warning 40: v was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 32, characters 9-15:
+Warning 40: c_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 32, characters 23-24:
+Warning 40: c was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 33, characters 110-116:
+Warning 40: c_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 33, characters 121-122:
+Warning 40: c was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 35, characters 11-17:
+Warning 40: v_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+# Target: Online/clauses_basic.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/clauses_basic.cmo, file:Online/clauses_basic.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/clauses_basic.cmo Online/clauses_basic.ml
+# Target: Online/clauses_wl.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/clauses_wl.cmo, file:Online/clauses_wl.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/clauses_wl.cmo Online/clauses_wl.ml
+# Target: Online/empty.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/empty.cmo, file:Online/empty.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/empty.cmo Online/empty.ml
+# Target: Online/equality.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/equality.cmo, file:Online/equality.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/equality.cmo Online/equality.ml
+# Target: Online/parameters.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/parameters.cmo, file:Online/parameters.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/parameters.cmo Online/parameters.ml
+# Target: Online/print_step.ml.depends, tags: { extension:ml, file:Online/print_step.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/print_step.ml > Online/print_step.ml.depends
+# Target: Online/propa.ml.depends, tags: { extension:ml, file:Online/propa.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/propa.ml > Online/propa.ml.depends
+# Target: Online/print_step.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/print_step.cmo, file:Online/print_step.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/print_step.cmo Online/print_step.ml
+# Target: Online/step.ml.depends, tags: { extension:ml, file:Online/step.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/step.ml > Online/step.ml.depends
+# Target: Online/learning.ml.depends, tags: { extension:ml, file:Online/learning.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/learning.ml > Online/learning.ml.depends
+# Target: Online/stack.ml.depends, tags: { extension:ml, file:Online/stack.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/stack.ml > Online/stack.ml.depends
+# Target: Online/learning.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/learning.cmo, file:Online/learning.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/learning.cmo Online/learning.ml
+# Target: Online/stack.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/stack.cmo, file:Online/stack.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/stack.cmo Online/stack.ml
+# Target: Online/unsat.ml.depends, tags: { extension:ml, file:Online/unsat.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/unsat.ml > Online/unsat.ml.depends
+# Target: Online/init.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/init.cmo, file:Online/init.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/init.cmo Online/init.ml
++ /usr/local/bin/ocamlc.opt -c -I Online -o Online/init.cmo Online/init.ml
+File "Online/init.ml", line 20, characters 12-13:
+Warning 40: a was selected from type DynArray.dynarray.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/init.ml", line 21, characters 12-13:
+Warning 40: a was selected from type DynArray.dynarray.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+# Target: Online/propa.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/propa.cmo, file:Online/propa.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/propa.cmo Online/propa.ml
+# Target: Online/step.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/step.cmo, file:Online/step.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/step.cmo Online/step.ml
++ /usr/local/bin/ocamlc.opt -c -I Online -o Online/step.cmo Online/step.ml
+File "Online/step.ml", line 43, characters 3-41:
+Warning 10: this expression should have type unit.
+File "Online/step.ml", line 111, characters 3-41:
+Warning 10: this expression should have type unit.
+# Target: Online/unsat.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/unsat.cmo, file:Online/unsat.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/unsat.cmo Online/unsat.ml
+# Target: Online/dpll.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/dpll.cmo, file:Online/dpll.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/dpll.cmo Online/dpll.ml
+# Target: Online/main.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Online/main.cmo, file:Online/main.ml, implem, ocaml, quiet }
+/usr/local/bin/ocamlc.opt -c -I Online -o Online/main.cmo Online/main.ml
+# Target: Online/sort.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/sort.cmx, file:Online/sort.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/sort.cmx Online/sort.ml
+# Target: Online/cnf.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/cnf.cmx, file:Online/cnf.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/cnf.cmx Online/cnf.ml
+# Target: Online/dynArray.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/dynArray.cmx, file:Online/dynArray.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/dynArray.cmx Online/dynArray.ml
+# Target: Online/parser_cnf.ml.depends, tags: { extension:ml, file:Online/parser_cnf.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/parser_cnf.ml > Online/parser_cnf.ml.depends
+# Target: Online/parser_cnf.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/parser_cnf.cmx, file:Online/parser_cnf.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/parser_cnf.cmx Online/parser_cnf.ml
+# Target: Online/lexer_cnf.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/lexer_cnf.cmx, file:Online/lexer_cnf.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/lexer_cnf.cmx Online/lexer_cnf.ml
+# Target: Online/dot.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/dot.cmx, file:Online/dot.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/dot.cmx Online/dot.ml
+# Target: Online/watched.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/watched.cmx, file:Online/watched.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/watched.cmx Online/watched.ml
+# Target: Online/parser_tseitin.ml.depends, tags: { extension:ml, file:Online/parser_tseitin.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/parser_tseitin.ml > Online/parser_tseitin.ml.depends
+# Target: Online/tseitin.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/tseitin.cmx, file:Online/tseitin.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/tseitin.cmx Online/tseitin.ml
+# Target: Online/parser_tseitin.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/parser_tseitin.cmx, file:Online/parser_tseitin.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/parser_tseitin.cmx Online/parser_tseitin.ml
++ /usr/local/bin/ocamlopt.opt -c -I Online -o Online/parser_tseitin.cmx Online/parser_tseitin.ml
+File "Online/parser_tseitin.mly", line 31, characters 11-14:
+Warning 40: Lit was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_tseitin.mly", line 33, characters 15-18:
+Warning 40: Not was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_tseitin.mly", line 34, characters 19-21:
+Warning 40: Or was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_tseitin.mly", line 35, characters 20-23:
+Warning 40: And was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_tseitin.mly", line 36, characters 21-23:
+Warning 40: Or was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_tseitin.mly", line 36, characters 25-28:
+Warning 40: Not was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+# Target: Online/lexer_tseitin.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/lexer_tseitin.cmx, file:Online/lexer_tseitin.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/lexer_tseitin.cmx Online/lexer_tseitin.ml
+# Target: Online/parser_equ.ml.depends, tags: { extension:ml, file:Online/parser_equ.ml, ocaml, ocamldep, quiet }
+/usr/local/bin/ocamldep.opt -modules Online/parser_equ.ml > Online/parser_equ.ml.depends
+# Target: Online/parser_equ.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/parser_equ.cmx, file:Online/parser_equ.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/parser_equ.cmx Online/parser_equ.ml
++ /usr/local/bin/ocamlopt.opt -c -I Online -o Online/parser_equ.cmx Online/parser_equ.ml
+File "Online/parser_equ.mly", line 39, characters 12-15:
+Warning 40: Lit was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_equ.mly", line 41, characters 15-18:
+Warning 40: Not was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_equ.mly", line 42, characters 19-21:
+Warning 40: Or was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_equ.mly", line 43, characters 20-23:
+Warning 40: And was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_equ.mly", line 44, characters 21-23:
+Warning 40: Or was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/parser_equ.mly", line 44, characters 25-28:
+Warning 40: Not was selected from type Tseitin.formula.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+# Target: Online/lexer_equ.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/lexer_equ.cmx, file:Online/lexer_equ.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/lexer_equ.cmx Online/lexer_equ.ml
+# Target: Online/base.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/base.cmx, file:Online/base.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/base.cmx Online/base.ml
++ /usr/local/bin/ocamlopt.opt -c -I Online -o Online/base.cmx Online/base.ml
+File "Online/base.ml", line 30, characters 9-15:
+Warning 40: v_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 30, characters 23-24:
+Warning 40: v was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 31, characters 115-121:
+Warning 40: v_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 31, characters 126-127:
+Warning 40: v was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 32, characters 9-15:
+Warning 40: c_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 32, characters 23-24:
+Warning 40: c was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 33, characters 110-116:
+Warning 40: c_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 33, characters 121-122:
+Warning 40: c was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/base.ml", line 35, characters 11-17:
+Warning 40: v_real was selected from type Cnf.cnf.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+# Target: Online/clauses_basic.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/clauses_basic.cmx, file:Online/clauses_basic.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/clauses_basic.cmx Online/clauses_basic.ml
+# Target: Online/clauses_wl.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/clauses_wl.cmx, file:Online/clauses_wl.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/clauses_wl.cmx Online/clauses_wl.ml
+# Target: Online/empty.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/empty.cmx, file:Online/empty.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/empty.cmx Online/empty.ml
+# Target: Online/equality.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/equality.cmx, file:Online/equality.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/equality.cmx Online/equality.ml
+# Target: Online/parameters.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/parameters.cmx, file:Online/parameters.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/parameters.cmx Online/parameters.ml
+# Target: Online/print_step.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/print_step.cmx, file:Online/print_step.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/print_step.cmx Online/print_step.ml
+# Target: Online/learning.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/learning.cmx, file:Online/learning.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/learning.cmx Online/learning.ml
+# Target: Online/stack.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/stack.cmx, file:Online/stack.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/stack.cmx Online/stack.ml
+# Target: Online/init.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/init.cmx, file:Online/init.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/init.cmx Online/init.ml
++ /usr/local/bin/ocamlopt.opt -c -I Online -o Online/init.cmx Online/init.ml
+File "Online/init.ml", line 20, characters 12-13:
+Warning 40: a was selected from type DynArray.dynarray.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+File "Online/init.ml", line 21, characters 12-13:
+Warning 40: a was selected from type DynArray.dynarray.
+It is not visible in the current scope, and will not 
+be selected if the type becomes unknown.
+# Target: Online/propa.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/propa.cmx, file:Online/propa.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/propa.cmx Online/propa.ml
+# Target: Online/step.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/step.cmx, file:Online/step.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/step.cmx Online/step.ml
++ /usr/local/bin/ocamlopt.opt -c -I Online -o Online/step.cmx Online/step.ml
+File "Online/step.ml", line 43, characters 3-41:
+Warning 10: this expression should have type unit.
+File "Online/step.ml", line 111, characters 3-41:
+Warning 10: this expression should have type unit.
+# Target: Online/unsat.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/unsat.cmx, file:Online/unsat.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/unsat.cmx Online/unsat.ml
+# Target: Online/dpll.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/dpll.cmx, file:Online/dpll.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/dpll.cmx Online/dpll.ml
+# Target: Online/main.cmx, tags: { compile, extension:cmx, extension:ml, file:Online/main.cmx, file:Online/main.ml, implem, native, ocaml, quiet }
+/usr/local/bin/ocamlopt.opt -c -I Online -o Online/main.cmx Online/main.ml
+# Target: Online/main.native, tags: { dont_link_with, extension:native, file:Online/main.native, link, native, ocaml, program, quiet }
+/usr/local/bin/ocamlopt.opt Online/sort.cmx Online/cnf.cmx Online/parser_cnf.cmx Online/lexer_cnf.cmx Online/base.cmx Online/dot.cmx Online/dynArray.cmx Online/clauses_basic.cmx Online/watched.cmx Online/clauses_wl.cmx Online/tseitin.cmx Online/parser_tseitin.cmx Online/lexer_tseitin.cmx Online/empty.cmx Online/parser_equ.cmx Online/lexer_equ.cmx Online/equality.cmx Online/parameters.cmx Online/init.cmx Online/print_step.cmx Online/learning.cmx Online/propa.cmx Online/stack.cmx Online/step.cmx Online/unsat.cmx Online/dpll.cmx Online/main.cmx -o Online/main.native
+# Compilation successful.

@@ -23,7 +23,6 @@ let create file aff_cnf =
 			Buffer.add_channel b f l ;
 			print_string "CNF produite :\n" ;
 			print_string (Buffer.contents b) ;
-			print_newline () ;
 			end ;
 		
 		(* Affiche les warnings sur le nombre de clauses et de varaibles *)
