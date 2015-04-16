@@ -62,7 +62,7 @@ let rec print_form tree buffer =
 	| Lit (a,b) ->
 		bprintf buffer "-%d %d 0\n%d -%d 0\n" a b a b
 	| And (a,b,c) ->
-		bprintf buffer "-%d %d 0\n-%d %d 0\n%d %d %d 0\n" c (etage a) c (etage b) c (etage a) (etage b) ;
+		bprintf buffer "-%d %d 0\n-%d %d 0\n%d -%d -%d 0\n" c (etage a) c (etage b) c (etage a) (etage b) ;
 		print_form a buffer ;
 		print_form b buffer
 	| Or (a,b,c) ->

@@ -15,10 +15,12 @@ let parse file =
 let parse_cnf s =
 	Parser_cnf.cnf Lexer_cnf.token (lexstr s)
 
-let create file =
+let create file aff_cnf =
 	try
 		let f, m = parse file in
 		let s = Tseitin.conv_tseitin f m in
+		if aff_cnf then
+			print_string s ;
 		let cnf = parse_cnf s in
 		cnf, m
 	with _ -> (failwith "Erreur de saisie")

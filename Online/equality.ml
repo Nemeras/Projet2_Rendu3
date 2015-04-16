@@ -73,10 +73,10 @@ let analyze f =
 	let m = ref empty in
 	let rec aux f =
 		match f with
-		| Lit ((x,y),b) when mem (x,y) !m ->
-			Lit (find (x,y) !m, b)
+		| Lit ((x,y),b) when mem (min x y, max x y) !m ->
+			Lit (find (min x y, max x y) !m, b)
 		| Lit ((x,y),b) ->
-			m := add (x,y) (cardinal !m + 1) !m ;
+			m := add (min x y, max x y) (cardinal !m + 1) !m ;
 			Lit (cardinal !m, b)
 		| And (a,b,c) ->
 			And (aux a, aux b, c)
@@ -98,12 +98,14 @@ let analyze f =
 	f0, arr
 
 
-let create file =
+let create file aff_cnf =
 	try
 		let f = parse file in
 		let f0, arr = analyze f in
 		let solver = { aa = arr ; eg = Array.init (1 + max_var arr) (fun i -> (i,1)) ; ineg = [] ; st = [] ; unsat = [] } in
 		let s = Tseitin.conv_tseitin f0 (Array.length arr) in
+		if aff_cnf then
+			print_string s ;
 		let cnf = parse_cnf s in
 		cnf, solver
 	with _ -> (failwith "Erreur de saisie")
@@ -139,7 +141,7 @@ let modif struc lit =
 	| Eg (x,y) when lit > 0 -> union x y (struc.eg) lit; 
 	| Eg (x,y) -> struc.ineg <- (x,y)::(struc.ineg);Addineg(lit,x,y);
 	| Ineg (x,y) when lit > 0 -> struc.ineg <- (x,y)::(struc.ineg);(Addineg(lit,x,y));
-	| Ineg (x,y) -> union x y (struc.eg) lit;;
+	| Ineg (x,y) -> union x y (struc.eg) lit
   
 let rec check_aux liste arr =
 	match (liste) with
@@ -198,7 +200,7 @@ let chemin tableau debut fin=
 	List.tl (List.tl (List.rev (!actuel::(!precedent))))
     
 let backtrack struc lit =
-	if lit < Array.length struc.aa then
+	if abs lit < Array.length struc.aa then
 		begin
 		let dernier_changement = List.hd struc.st in
 		struc.st <- List.tl (struc.st) ;
@@ -215,7 +217,7 @@ let backtrack struc lit =
 
 
 let update struc lit =
-	if lit < Array.length struc.aa then
+	if abs lit < Array.length struc.aa then
 		begin
 		struc.st <- (modif struc lit)::struc.st ;
 		let che = check struc in

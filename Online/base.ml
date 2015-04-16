@@ -11,10 +11,19 @@ let parse file =
 	Parser_cnf.cnf Lexer_cnf.token (lexbuf file)
 
 (* Crée la CNF représentée dans le fichier *)
-let create file =
+let create file aff_cnf =
 	try
 		let cnf = parse file in
-
+		
+		if aff_cnf then
+			begin
+			let f = open_in file in
+			let l = in_channel_length f in
+			let b = Buffer.create l in
+			Buffer.add_channel b f l ;
+			print_string (Buffer.contents b) ;
+			end ;
+		
 		(* Affiche les warnings sur le nombre de clauses et de varaibles *)
 		if cnf.v_real <> cnf.v then
 			Printf.printf "Attention : L'indice maximal des variables est %d, alors que le nombre annoncé était %d\n" cnf.v_real cnf.v ;

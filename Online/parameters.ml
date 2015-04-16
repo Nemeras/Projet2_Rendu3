@@ -54,7 +54,7 @@ module type Theory =
 sig
 	type atom
 	type struc
-	val create : string -> Cnf.cnf * struc
+	val create : string -> bool -> Cnf.cnf * struc
 	val update : struc -> Cnf.literal -> int
 	val backtrack : struc -> Cnf.literal -> unit
 	val unsat : struc -> Cnf.clause
