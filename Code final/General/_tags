@@ -1,0 +1,5 @@
+<cnf.cmx>: for-pack(General)
+<dot.cmx>: for-pack(General)
+<dynArray.cmx>: for-pack(General)
+<sort.cmx>: for-pack(General)
+<tseitin.cmx>: for-pack(General)

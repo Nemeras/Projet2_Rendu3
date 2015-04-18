@@ -1,0 +1,3 @@
+<base.cmx>: for-pack(Theories)
+<empty.cmx>: for-pack(Theories)
+<equality.cmx>: for-pack(Theories)
