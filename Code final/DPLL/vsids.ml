@@ -72,7 +72,7 @@ let rec incr c para =
 		incr c2 para
 
 
-(* Multiplie tous les scores par 0.95 (à chaque conflit) *)
+(* Multiplie tous les scores par 0.9 (à chaque conflit) *)
 let decr_scores para =
 	for i = 1 to (Array.length para.scores)/2 do
 		modif i (int_of_float ((float_of_int (score i para))*.0.9)) para ;
