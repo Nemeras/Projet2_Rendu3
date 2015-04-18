@@ -89,7 +89,7 @@ let loop cnf stack solver clauses current pos origins solution levels orders k p
 			Bcp.propa stack solver current pos solution levels orders para ;
 		
 		(* Si toutes les variables ont été instanciées *)
-		if (not para.vsids && abs !k = cnf.v_real) || (para.vsids && Types.S.is_empty para.heap) then
+		if (not para.vsids && abs !k = cnf.v_real) || (para.vsids && Types.S.is_empty para.set_vsids) then
 			(* S'il y a contradiction : backtrack *)
 			if solution.(0) < 0 then
 				S.continue stack solver clauses current pos origins solution levels orders k para

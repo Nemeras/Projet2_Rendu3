@@ -136,8 +136,8 @@ let from_scratch stack solver current pos solution levels k para =
 			T.backtrack solver !k ;
 			if para.vsids then
 				begin
-				Heap.add_score !k para ;
-				Heap.add_score (- !k) para ;
+				Vsids.add_score !k para ;
+				Vsids.add_score (- !k) para ;
 				end ;
 			k := C.pick stack
 		done ;
@@ -189,8 +189,8 @@ let learning stack solver clauses current pos solution levels orders k para orig
 		DynArray.add current clause_mod (C.init_value []) ;
 		if para.vsids then
 			begin
-			Heap.decr_scores para ;
-			Heap.incr new_clause para ;
+			Vsids.decr_scores para ;
+			Vsids.incr new_clause para ;
 			end ;
 		
 		(* Détermination du niveau de backtrack *)

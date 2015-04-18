@@ -67,13 +67,13 @@ let init cnf learning vsids draw unsat print =
 		unsat = unsat ;
 		print = print ;
 		scores = [||] ;
-		heap = Types.S.empty
+		set_vsids = Types.S.empty
 	}
 	in
 	
-	(* Initialisation de scores et heap si on a activé l'heuristique VSIDS *)
+	(* Initialisation de scores et vsids si on a activé l'heuristique VSIDS *)
 	if vsids then
-		Heap.create pos para ;
+		Vsids.create pos para ;
 	
 	let k = ref (
 		if solution.(0) < 0 then	(* Si la clause vide est dans la CNF *)

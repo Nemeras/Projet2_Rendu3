@@ -149,5 +149,5 @@ type parameters = {
 	unsat : bool ;			(* Indique si l'explication de l'insatisfiabilité est désactivée *)
 	print : bool ;			(* Indique si on doit afficher les étapes intermédiaires de DPLL *)
 	mutable scores : int array ;	(* Tableau des scores de chaque littéral (pour VSIDS) *)
-	mutable heap : S.t		(* Ensemble des littéraux pondérés par leur score (pour VSIDS) *)
+	mutable set_vsids : S.t		(* Ensemble des littéraux pondérés par leur score (pour VSIDS) *)
 }

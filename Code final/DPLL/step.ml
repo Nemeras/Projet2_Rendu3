@@ -35,8 +35,8 @@ let backtrack_step stack solver current pos solution levels orders k para =
 		T.backtrack solver !k ;
 		if para.vsids then
 			begin
-			Heap.add_score !k para ;
-			Heap.add_score (- !k) para
+			Vsids.add_score !k para ;
+			Vsids.add_score (- !k) para
 			end ;
 		P.print_backtrack !k solution.(abs !k) para.print ;
 		solution.(abs !k) <- 0 ;
@@ -67,8 +67,8 @@ let backtrack_step stack solver current pos solution levels orders k para =
 		k := C.backtrack stack current pos solution ;
 		if para.vsids then
 			begin
-			Heap.add_score !k para ;
-			Heap.add_score (- !k) para
+			Vsids.add_score !k para ;
+			Vsids.add_score (- !k) para
 			end ;
 		k := C.pick stack
 		end
@@ -116,7 +116,7 @@ let continue stack solver clauses current pos origins solution levels orders k p
 		begin
 		(* Si l'heuristique VSIDS est activée, on choisit le k suivant *)
 		if para.vsids then
-			k := Heap.next para ;
+			k := Vsids.next para ;
 		if !k <> 0 && solution.(abs !k) = 0 then
 			begin
 			if not para.vsids then
@@ -128,8 +128,8 @@ let continue stack solver clauses current pos origins solution levels orders k p
 			let _ = C.update !k stack current pos solution in
 			if para.vsids then
 				begin
-				Heap.remove_score !k para ;
-				Heap.remove_score (- !k) para
+				Vsids.remove_score !k para ;
+				Vsids.remove_score (- !k) para
 				end ;
 			levels.(abs !k) <- para.level ;
 			orders.(abs !k) <- 0

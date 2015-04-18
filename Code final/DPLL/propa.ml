@@ -29,8 +29,8 @@ struct
 				let l = C.update x stack current pos solution in
 				if para.vsids then
 					begin
-					Heap.remove_score x para ;
-					Heap.remove_score (-x) para
+					Vsids.remove_score x para ;
+					Vsids.remove_score (-x) para
 					end ;
 				aux (tail@l) (num+1)
 			| (x,i)::tail ->
